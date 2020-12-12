@@ -37,19 +37,19 @@ class EmobotSignup(View):
 		form = UserForm(request.POST)
 
 		if form.is_valid():
-			fn = request.POST.get('ufirstname')
-			ln = request.POST.get('ulastname')
-			ha = request.POST.get('uhomeaddress')
-			pr = request.POST.get('uprovince')
-			ct = request.POST.get('ucity')
-			gn = request.POST.get('ugender')
-			bd = request.POST.get('ubirthdate')
-			em = request.POST.get('uemail')
-			un = request.POST.get('uusername')
-			pw = request.POST.get('upassword')
+			fn = request.POST.get('firstname')
+			ln = request.POST.get('lastname')
+			ha = request.POST.get('homeaddress')
+			pr = request.POST.get('province')
+			ct = request.POST.get('city')
+			gn = request.POST.get('gender')
+			bd = request.POST.get('birthday')
+			em = request.POST.get('email')
+			un = request.POST.get('username')
+			pw = request.POST.get('password')
 
 			form = User( firstname = fn, lastname = ln, homeaddress = ha, province = pr, 
-									city = ct, gender = gn, birthday = bd, uemail = em,
+									city = ct, gender = gn, birthday = bd, email = em,
 									username = un, password = pw)
 
 			form.save() 
