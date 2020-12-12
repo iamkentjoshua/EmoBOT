@@ -1,0 +1,28 @@
+{% load static %}
+
+{% block headerinclude %}
+    <title>EmoBOT</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
+{% endblock headerinclude %}
+
+{% block content %}
+	<div class="login">
+        <form action="" method="post" autocomplete="off" enctype="multipart/form-data">
+            {% csrf_token %}
+                <h2>LOGIN</h2>
+                {% for message in messages %}
+                <p>{{ message }}</p>
+                {% endfor %}
+                    <label>Username</label>
+                        <input type="text" name="username" placeholder="Username"><br>
+                    <label>Password</label>
+                        <input type="password" name="password" placeholder="Password"><br>
+
+                    <button type="submit">Login</button>
+                    <a href="{% url 'emobot:signup_view' %}" class="ca">Create an account</a>
+        </form>
+    </div>
+{% endblock content %}
+
+{% block footerinclude %}
+{% endblock footerinclude %}
