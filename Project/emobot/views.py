@@ -31,8 +31,8 @@ class EmobotHome(View):
 	def get(self, request):
 		return render(request, 'homepage.html')		
 
-
 # Signup
+
 def EmobotSignup(request):
 	form = CreateUserForm()
 
@@ -58,8 +58,10 @@ def EmobotSignup(request):
 			return render(request, 'signup.html')
 		
 		else:
-			return HttpResponse('not valid')
+			messages.info(request, 'Your account was not created successfully' )
+			return render(request, 'signup.html')
 
+	# messages.success(request, 'Your account was created successfully' )
 	context = {'form' : form}
 	return render(request, 'signup.html', context)
 
