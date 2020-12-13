@@ -8,17 +8,11 @@
 {% block content %}
         <div class="signup">
         <form action="" method="POST" autocomplete="off" enctype="multipart/form-data">
-<<<<<<< HEAD
-            {% csrf_token %}
-                <h2>SIGN UP</h2>
-
-=======
             {% csrf_token %}          
                 <h2>SIGN UP</h2>
                 {% for message in messages %}
                     <p>{{ message }}</p>
                 {% endfor %}
->>>>>>> AJ
                 <label>First Name</label>
                     <input type="text" name="firstname" placeholder="First Name" required/><br>
                 <label>Last Name</label>
@@ -38,17 +32,6 @@
                 <label>Birthdate</label>
                     <input type="date" name="birthday" placeholder="Birthdate" required/><br>
                 <label>Email</label>
-<<<<<<< HEAD
-                    <input type="email" name="email" placeholder="Email" required/><br>
-                <label>Username</label>
-                    <input type="text" name="username" placeholder="Username" required/><br>
-                <label>Password</label>
-                    <input type="password" name="password" placeholder="Password" required/><br>
-                <label>Confirm Password</label>
-                    <input type="password" name="re_password" placeholder="Confirm Password" required/><br>
-
-                <button type="submit">Sign Up</button>
-=======
                     {{form.email}}<br>
                 <label>Username</label>
                     {{form.username}}<br>
@@ -59,7 +42,6 @@
                     <span id='message'></span>
                 </label>
                 <button type="submit" onclick="return Validate()">Sign Up</button>
->>>>>>> AJ
                 <a href="{% url 'emobot:login_view' %}" class="ca">Already have an account?</a>
         </form>
         </div>      
@@ -79,8 +61,6 @@
         }
     </script>
     <script src="{% static 'script/city.js' %}"></script>	  
-<<<<<<< HEAD
-=======
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <!-- <script>
         $('#txtPassword, #txtConfirmPassword').on('keyup', function () {
@@ -112,5 +92,4 @@
             form_fields[field].className += ' form-control'
         }
     </script>
->>>>>>> AJ
 {% endblock footerinclude %}

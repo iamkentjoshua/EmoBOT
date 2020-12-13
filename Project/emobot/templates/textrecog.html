@@ -17,14 +17,6 @@
         </span>
 
         <ul class="menu_items">
-<<<<<<< HEAD
-          <li><a href="homepage.html">Home</a></li>
-          <li><a href="facerecog.html">Face <br> Recognition</a></li>
-          <li><a href="textrecog.html">Text <br> Recognition</a></li>
-          <li><a href="aboutus.html">About Us</a></li>
-          <li><a href="signlog.html">Logout</a></li>
-        </ul>
-=======
             <li><a href="{% url 'emobot:home_view' %}">Home</a></li>
             <li><a href="{% url 'emobot:video_view' %}">Face <br> Recognition</a></li>
             <li><a href="{% url 'emobot:text_view' %}">Text <br> Recognition</a></li>
@@ -32,7 +24,6 @@
             <li><a href="{% url 'emobot:logout_view' %}">Logout</a></li>
         </ul>
         
->>>>>>> AJ
         <main class="content">
             <div class="content_inner">
                     <p>{{send}}</p>
@@ -226,18 +217,6 @@
 
 {% block footerinclude %}
     <script type="text/javascript">
-<<<<<<< HEAD
-
-        var $page = $('.page');
-
-        $('.menu_toggle').on('click', function() {
-            $page.toggleClass('shazam');
-        });
-
-        $('.content').on('click', function() {
-            $page.removeClass('shazam');
-        });
-=======
         window.onload = function() {
             var $page = $('.page');
 
@@ -249,7 +228,6 @@
                 $page.removeClass('shazam');
             });
         }
->>>>>>> AJ
     </script>
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 {% endblock footerinclude %}
