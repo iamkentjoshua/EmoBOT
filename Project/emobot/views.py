@@ -116,7 +116,7 @@ def EmobotLogin(request):
 			login(request, user)
 			return render(request, 'homepage.html')
 		else:
-			messages.info(request, 'Username or Password in Incorrect')
+			messages.info(request, 'Username or Password is Incorrect')
 			return render(request, 'login.html')
 
 	context = {}
