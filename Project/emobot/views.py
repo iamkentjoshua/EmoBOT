@@ -3,8 +3,8 @@ from django.http import Http404
 from datetime import datetime
 from django.shortcuts import render, redirect
 from django.views.generic import View, TemplateView
-from .forms import CreateUserForm
-from .models import User, Person
+from .forms import CreateUserForm, PersonForm
+from .models import Person
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
@@ -31,54 +31,38 @@ class EmobotHome(View):
 	def get(self, request):
 		return render(request, 'homepage.html')		
 
-# Signup
 
+# Signup
 def EmobotSignup(request):
 	form = CreateUserForm()
 
 	if request.method == 'POST':
 		form = CreateUserForm(request.POST)
-		if form.is_valid():
+		form2 = PersonForm(request.POST)
+		if form.is_valid() and form2.is_valid():
+			fn = request.POST.get('firstname')
+			ln = request.POST.get('lastname')
+			ha = request.POST.get('homeaddress')
+			pr = request.POST.get('province')
+			ct = request.POST.get('city')
+			gn = request.POST.get('gender')
+			bd = request.POST.get('birthday')
+
+			form2 = Person(firstname = fn, lastname = ln, homeaddress = ha, 
+						province = pr, city = ct, gender = gn, birthday = bd)
+
 			form.save()
+			form2.save()
+
 			messages.success(request, 'Your account was created successfully' )
 			return render(request, 'signup.html')
+		
+		else:
+			return HttpResponse('not valid')
 
 	context = {'form' : form}
 	return render(request, 'signup.html', context)
 
-
-# class EmobotSignup(View):
-	# def get(self, request):
-	# 	return render(request, 'signup.html')
-
-	# def post(self, request):
-	# 	form = UserForm(request.POST)
-
-	# 	if form.is_valid():
-	# 		fn = request.POST.get('firstname')
-	# 		ln = request.POST.get('lastname')
-	# 		ha = request.POST.get('homeaddress')
-	# 		pr = request.POST.get('province')
-	# 		ct = request.POST.get('city')
-	# 		gn = request.POST.get('gender')
-	# 		bd = request.POST.get('birthday')
-	# 		em = request.POST.get('email')
-	# 		un = request.POST.get('username')
-	# 		pw = request.POST.get('password')
-	
-	# 		form = User(firstname = fn, lastname = ln, homeaddress = ha, 
-	# 					province = pr, city = ct, gender = gn, birthday = bd, 
-	# 					email = em, username = un, password = pw)
-
-	# 		form.save() 
-
-	# 		messages.success(request, 'Your account was created successfully!')
-
-	# 		return render(request, 'signup.html')	
-
-	# 	else:
-	# 		print(form.errors)
-	# 		return HttpResponse('not valid')
 
 # Login
 def EmobotLogin(request):
@@ -99,26 +83,8 @@ def EmobotLogin(request):
 	context = {}
 	return render(request, 'login.html', context)
 
-# class EmobotLogin(View):
-# 	def get(self, request):
-# 		return render(request, 'login.html')
 
-# 	def login(self, request):
-# 		if request.method == 'POST':
-# 			username = request.POST['username']
-# 			password = request.POST['password']
-			
-# 			user = authenticate(request, username=username, password=password)
-
-# 			if user is not None:
-# 				login(request, user)
-# 				return render(request, 'homepage.html')
-# 			else:
-# 				return HttpResponse('not valid')
-
-# 		else:
-# 			return HttpResponse('not valid')
-
+# Logout
 def EmobotLogout(request):
 	logout(request)
 	return render(request, 'login.html')

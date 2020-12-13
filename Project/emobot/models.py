@@ -12,14 +12,6 @@ class Person(models.Model):
     city = models.CharField(max_length = 100)
     gender = models.CharField(max_length = 100)
     birthday = models.DateField(default = datetime.now().strftime('%Y-%m-%d'))
-    email = models.CharField(max_length = 100, unique=True)
 
     class Meta:
         db_table = "Person"
-
-class User(Person):
-    username = models.CharField(max_length = 100, unique=True)
-    password = models.CharField(max_length = 100)
-
-    class Meta:
-        db_table = "User"
