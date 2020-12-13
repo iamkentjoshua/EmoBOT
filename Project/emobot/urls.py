@@ -18,9 +18,19 @@ urlpatterns = [
     path('home', views.EmobotHome.as_view(), name="home_view"),    
 
     #Signup
+<<<<<<< HEAD
     path('signup', views.EmobotSignup.as_view(), name="signup_view"),    
 
     #Login 
     path('login', views.EmobotLogin.as_view(), name="login_view"),    
+=======
+    path('signup', views.EmobotSignup, name="signup_view"),    
+
+    #Login 
+    path('login', views.EmobotLogin, name="login_view"),  
+
+    #Logout
+    path('logout', views.EmobotLogout, name="logout_view"),
+>>>>>>> AJ
     
  ]

@@ -8,9 +8,17 @@
 {% block content %}
         <div class="signup">
         <form action="" method="POST" autocomplete="off" enctype="multipart/form-data">
+<<<<<<< HEAD
             {% csrf_token %}
                 <h2>SIGN UP</h2>
 
+=======
+            {% csrf_token %}          
+                <h2>SIGN UP</h2>
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+>>>>>>> AJ
                 <label>First Name</label>
                     <input type="text" name="firstname" placeholder="First Name" required/><br>
                 <label>Last Name</label>
@@ -30,6 +38,7 @@
                 <label>Birthdate</label>
                     <input type="date" name="birthday" placeholder="Birthdate" required/><br>
                 <label>Email</label>
+<<<<<<< HEAD
                     <input type="email" name="email" placeholder="Email" required/><br>
                 <label>Username</label>
                     <input type="text" name="username" placeholder="Username" required/><br>
@@ -39,6 +48,18 @@
                     <input type="password" name="re_password" placeholder="Confirm Password" required/><br>
 
                 <button type="submit">Sign Up</button>
+=======
+                    {{form.email}}<br>
+                <label>Username</label>
+                    {{form.username}}<br>
+                <label>Password</label>
+                    {{form.password1}}<br>
+                <label>Confirm Password
+                    {{form.password2}}<br>
+                    <span id='message'></span>
+                </label>
+                <button type="submit" onclick="return Validate()">Sign Up</button>
+>>>>>>> AJ
                 <a href="{% url 'emobot:login_view' %}" class="ca">Already have an account?</a>
         </form>
         </div>      
@@ -58,4 +79,38 @@
         }
     </script>
     <script src="{% static 'script/city.js' %}"></script>	  
+<<<<<<< HEAD
+=======
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- <script>
+        $('#txtPassword, #txtConfirmPassword').on('keyup', function () {
+            if ($('#txtPassword').val() == $('#txtConfirmPassword').val()) {
+                $('#message').html('Passwords Match').css('color', 'green');
+            } else 
+                $('#message').html('Passwords do not match').css('color', 'red');
+        });
+    </script>
+    <script type="text/javascript">
+        function Validate() {
+            var password = document.getElementById("txtPassword").value;
+            var confirmPassword = document.getElementById("txtConfirmPassword").value;
+            if (password != confirmPassword) {
+                alert("Passwords do not match.");
+                return false;
+            }
+            return true;
+        }
+    </script> -->
+    <script>
+        var form_fields = document.getElementsByTagName('input')
+        form_fields[5].placeholder = 'Email';
+        form_fields[6].placeholder = 'Username';
+        form_fields[7].placeholder = 'Password';
+        form_fields[8].placeholder = 'Confirm Passoword';
+
+        for(var field in form_fields){
+            form_fields[field].className += ' form-control'
+        }
+    </script>
+>>>>>>> AJ
 {% endblock footerinclude %}

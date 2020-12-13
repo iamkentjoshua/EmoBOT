@@ -12,6 +12,7 @@ class Person(models.Model):
     city = models.CharField(max_length = 100)
     gender = models.CharField(max_length = 100)
     birthday = models.DateField(default = datetime.now().strftime('%Y-%m-%d'))
+<<<<<<< HEAD
     email = models.CharField(max_length = 100)
 
     class Meta:
@@ -23,3 +24,8 @@ class User(Person):
 
     class Meta:
         db_table = "User"
+=======
+
+    class Meta:
+        db_table = "Person"
+>>>>>>> AJ
