@@ -16,23 +16,40 @@ class EmobotAbout(View):
 	def get(self, request):
 		return render(request, 'aboutus.html')
 
+
 # Video
 class EmobotVideo(View):
 	def get(self, request):
 		return render(request, 'facerecog.html')
 
+
 # Text
 class EmobotText(View):
-	def get(self, request):
-		return render(request, 'textrecog.html')
+    def get(self, request):
+        return render(request, 'text_recognition_page.html')
+
+    def post(self, request):
+        if request.method == 'POST':
+            text = request.POST.get("text")
+            score = SentimentIntensityAnalyzer().polarity_scores(text)
+            if score['neg'] > score['pos']:
+                res = "Negative"
+            elif score['neg'] < score['pos']:
+                res = "Positive"
+            else:
+                res = "Neutral"
+            print(res)
+        context = {res}
+        return HttpResponse(context)
+
 
 # Home
 class EmobotHome(View):
 	def get(self, request):
 		return render(request, 'homepage.html')		
 
-# Signup
 
+# Signup
 def EmobotSignup(request):
 	form = CreateUserForm()
 
@@ -58,10 +75,8 @@ def EmobotSignup(request):
 			return render(request, 'signup.html')
 		
 		else:
-			messages.info(request, 'Your account was not created successfully' )
-			return render(request, 'signup.html')
+			return HttpResponse('not valid')
 
-	# messages.success(request, 'Your account was created successfully' )
 	context = {'form' : form}
 	return render(request, 'signup.html', context)
 

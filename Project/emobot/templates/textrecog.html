@@ -79,10 +79,10 @@
                   </div> -->
                 </main>
 
-                <form class="msger-inputarea" action="#" method="POST">
-                  <input type="text" class="msger-input" name="user_input" placeholder="Enter your message..."/>
-                  <button type="button" id="send" class="msger-send-btn">Send</button>
-                  <input type="submit" value="Analyze" class="analyze"/>
+                <form class="msger-inputarea"method="post"> 
+                  {% csrf_token %}
+                  <input type="text" name="text"  class="msger-input" placeholder="Enter your message...">
+                  <button type="submit" class="msger-send-btn">Send</button>
                 </form>
               </section>
                 
