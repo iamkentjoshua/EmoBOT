@@ -8,6 +8,10 @@ from .models import Person
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
+from nltk.corpus import stopwords
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+from nltk.stem import WordNetLemmatizer
+from nltk.tokenize import word_tokenize
 
 # Create your views here. Arrange Views in alphabetical order
 
@@ -26,7 +30,7 @@ class EmobotVideo(View):
 # Text
 class EmobotText(View):
     def get(self, request):
-        return render(request, 'text_recognition_page.html')
+        return render(request, 'textrecog.html')
 
     def post(self, request):
         if request.method == 'POST':
@@ -75,8 +79,10 @@ def EmobotSignup(request):
 			return render(request, 'signup.html')
 		
 		else:
-			return HttpResponse('not valid')
+			messages.info(request, 'Your account was not created successfully' )
+			return render(request, 'signup.html')
 
+	# messages.success(request, 'Your account was created successfully' )
 	context = {'form' : form}
 	return render(request, 'signup.html', context)
 
