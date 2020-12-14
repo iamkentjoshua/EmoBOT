@@ -25,15 +25,15 @@
 
         <main class="content">
             <div class="content_inner">
-                <h1>Kamo na bahala sa space</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium totam qui voluptatum architecto quos beatae, itaque aliquam esse consequatur, enim odio quam. Mollitia quod quo, eveniet quibusdam harum culpa explicabo?</p>
+                <video id="video" width="1080" height="720" autoplay muted></video>
             </div>
         </main>
-
     </div>
 {% endblock content %}
 
 {% block footerinclude %}
+    <script defer src="/static/script/face-api.min.js"></script>
+    <script defer src="/static/script/script.js"></script>
     <script type="text/javascript">
         window.onload = function() {
             var $page = $('.page');
