@@ -1,11 +1,10 @@
-
 const video = document.getElementById('video')
 
 Promise.all([
-  faceapi.nets.tinyFaceDetector.loadFromUri('/static/models'),
-  faceapi.nets.faceLandmark68Net.loadFromUri('/static/models'),
-  faceapi.nets.faceRecognitionNet.loadFromUri('/static/models'),
-  faceapi.nets.faceExpressionNet.loadFromUri('/static/models')
+  faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
+  faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
+  faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
+  faceapi.nets.faceExpressionNet.loadFromUri('/models')
 ]).then(startVideo)
 
 function startVideo() {
@@ -44,8 +43,8 @@ video.addEventListener('play', () => {
 })
 
 function closest(array,num){
-  var i = 0;
-  var minDiff = 1000;
+  var i=0;
+  var minDiff=1000;
   var ans;
   for(i in array){
     var m=Math.abs(num-array[i]);

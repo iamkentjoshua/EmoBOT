@@ -8,6 +8,10 @@ from .models import Person
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
+from nltk.corpus import stopwords
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+from nltk.stem import WordNetLemmatizer
+from nltk.tokenize import word_tokenize
 
 # Create your views here. Arrange Views in alphabetical order
 
@@ -16,23 +20,40 @@ class EmobotAbout(View):
 	def get(self, request):
 		return render(request, 'aboutus.html')
 
+
 # Video
 class EmobotVideo(View):
 	def get(self, request):
 		return render(request, 'facerecog.html')
 
+
 # Text
 class EmobotText(View):
-	def get(self, request):
-		return render(request, 'textrecog.html')
+    def get(self, request):
+        return render(request, 'textrecog.html')
+
+    def post(self, request):
+        if request.method == 'POST':
+            text = request.POST.get("text")
+            score = SentimentIntensityAnalyzer().polarity_scores(text)
+            if score['neg'] > score['pos']:
+                res = "Negative"
+            elif score['neg'] < score['pos']:
+                res = "Positive"
+            else:
+                res = "Neutral"
+            print(res)
+        context = {res}
+        return HttpResponse(context)
+
 
 # Home
 class EmobotHome(View):
 	def get(self, request):
 		return render(request, 'homepage.html')		
 
-# Signup
 
+# Signup
 def EmobotSignup(request):
 	form = CreateUserForm()
 
